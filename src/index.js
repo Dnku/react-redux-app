@@ -4,51 +4,16 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import { createStore, combineReducers } from "redux";
+import { createStore } from "redux";
+// import { createStore, combineReducers, combineActions } from "redux";
 import { Provider } from "react-redux";
+import allReducers from "./reducers";
+// import { allActions } from "./actions";
 
-// REDUCER
-const counterRedocer = (state = 0, action) => {
-  switch (action.type) {
-    case "INCREMENT":
-      return state + action.payload;
-    case "DECREMENT":
-      return state - action.payload;
-    default:
-      return state;
-  }
-};
-
-const loggedReducer = (state = false, action) => {
-  switch (action.type) {
-    case "SIGN_IN":
-      return !state;
-    default:
-      return false;
-  }
-};
-
-const allReducer = combineReducers({
-  counter: counterRedocer,
-  logged: loggedReducer,
-});
-
-// STOTE -> GLOBALIZED STATE
 let store = createStore(
-  allReducer,
+  allReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-
-// Display it in the console
-store.subscribe(() => console.log(store.getState()));
-
-// DISPATCH
-// store.dispatch(increment());
-// store.dispatch(increment());
-// store.dispatch(increment());
-// store.dispatch(increment());
-// store.dispatch(decrement());
-// store.dispatch(decrement());
 
 ReactDOM.render(
   <Provider store={store}>

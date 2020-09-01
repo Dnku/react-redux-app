@@ -2,20 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
-
-// ACTION
-const increment = (number) => {
-  return {
-    type: "INCREMENT",
-    payload: number, // data
-  };
-};
-const decrement = (number) => {
-  return {
-    type: "DECREMENT",
-    payload: number, // data
-  };
-};
+import { increment, decrement } from "./actions";
 
 function App() {
   const counter = useSelector((state) => state.counter);
